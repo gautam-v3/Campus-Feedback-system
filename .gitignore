@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+models/*.pkl
+models/campus_ner_model/
+models/*.png
+data/complaints_processed.csv
+# Local database and complaint data
+data/*.db
+data/*.csv
+data/*.sqlite
+data/*.sqlite3

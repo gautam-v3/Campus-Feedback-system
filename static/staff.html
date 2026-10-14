@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Campus Maintenance — Staff Dashboard</title>
+<style>
+:root{
+  --ink:#12263a; --muted:#6b7c8f; --navy:#0b2742; --blue:#1769aa;
+  --gold:#e9aa2b; --bg:#f7f9fb; --card:#fff; --line:#e4eaf0;
+  --soft:#f1f6fa; --danger:#c62828; --warn:#b86b00; --success:#16865a;
+}
+*{box-sizing:border-box}
+html,body{margin:0!important;padding:0!important;max-width:none!important}
+body{
+  background:var(--bg)!important;color:var(--ink);
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.5;
+}
+.vit-header{background:var(--navy);color:#fff}
+.header-inner{
+  max-width:1180px;margin:auto;padding:14px 24px;
+  min-height:62px;display:flex;align-items:center;justify-content:space-between
+}
+.brand{display:flex;align-items:center;gap:12px}
+.vit-badge{
+  width:43px;height:43px;border-radius:9px;background:#fff;color:var(--navy);
+  display:grid;place-items:center;font-size:16px;font-weight:950;letter-spacing:1px
+}
+.brand-title{font-size:15px;font-weight:800}
+.brand-sub{font-size:11px;color:#b9c9d8;margin-top:1px}
+.role-pill{font-size:11px;color:#dbe6ef}
+.navbar{background:#fff;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:auto;padding:0 24px;display:flex;gap:22px}
+.navbar a{
+  color:#657587;text-decoration:none;font-size:12px;font-weight:750;
+  padding:11px 2px;border-bottom:2px solid transparent
+}
+.navbar a.active,.navbar a:hover{color:var(--blue);border-color:var(--gold)}
+.shell{max-width:1180px;margin:auto;padding:32px 24px}
+.page-head{margin-bottom:22px}
+.eyebrow{font-size:10px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase;color:var(--maroon)}
+.page-head h1{margin:4px 0;color:var(--navy);font-size:28px;letter-spacing:-.5px}
+.page-head p{margin:0;color:var(--muted);font-size:13px}
+.card{
+  background:var(--card)!important;border:1px solid var(--line)!important;
+  border-radius:11px!important;box-shadow:0 2px 10px rgba(18,38,58,.04)!important;
+  padding:22px!important;margin-bottom:18px
+}
+.card-title{font-size:17px!important;color:var(--navy);margin:0!important}
+.card-sub{font-size:12px!important;color:var(--muted);margin:4px 0 17px!important}
+label{font-size:11px!important;font-weight:800!important;color:#53677a!important;margin:13px 0 6px!important}
+input,textarea,select{
+  width:100%;border:1px solid #ccd7e1!important;border-radius:7px!important;
+  background:#fff!important;color:var(--ink)!important;padding:10px 11px!important;
+  font:inherit;font-size:13px!important
+}
+textarea{min-height:115px!important}
+input:focus,textarea:focus,select:focus{
+  outline:2px solid #1769aa20!important;border-color:var(--blue)!important
+}
+button{
+  border:0!important;border-radius:7px!important;background:var(--blue)!important;
+  color:#fff!important;padding:10px 16px!important;font-size:12px!important;
+  font-weight:800!important;box-shadow:none!important;transition:.15s
+}
+button:hover{background:#12598f!important;transform:none!important}
+.tip{
+  margin:14px 0;background:#f8fafc;border:1px solid var(--line);border-radius:7px;
+  padding:10px 11px;color:#68798a;font-size:11px
+}
+.tip b{color:var(--navy)}
+.ticket{
+  margin-top:18px!important;padding:17px!important;border-radius:9px!important;
+  border:1px solid #d9e5ef!important;border-left:3px solid var(--blue)!important;
+  background:var(--soft)!important
+}
+.ticket-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.ticket-item b{
+  display:block;font-size:9px;text-transform:uppercase;letter-spacing:.6px;
+  color:#8090a0;margin-bottom:2px
+}
+.ticket-item span{font-size:13px}
+.status-badge{border-radius:999px!important;font-size:10px!important;padding:4px 8px!important}
+.priority-Critical{color:var(--danger)!important;font-weight:900!important}
+.priority-High{color:var(--warn)!important;font-weight:850!important}
+.priority-Medium{color:#8a6500!important;font-weight:800!important}
+.priority-Low{color:var(--success)!important;font-weight:800!important}
+.timeline{display:flex;margin-top:17px}
+.step{flex:1;text-align:center;position:relative;color:#a0acb7;font-size:9px}
+.step:before{content:"";display:block;width:9px;height:9px;border-radius:50%;background:#d6dee6;margin:0 auto 5px;position:relative;z-index:2}
+.step:after{content:"";height:1px;background:#dbe2e8;position:absolute;top:4px;left:50%;right:-50%;z-index:1}
+.step:last-child:after{display:none}.step.done{color:var(--blue)}.step.done:before{background:var(--blue)}.step.done:after{background:var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 16px}
+.stat-label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#7b8b9a;font-weight:850}
+.stat-num{font-size:24px;color:var(--navy);font-weight:900;margin-top:2px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;min-width:900px;background:#fff}
+th,td{padding:11px 10px;text-align:left;border-bottom:1px solid #edf1f4;font-size:11px;vertical-align:top}
+th{background:#fafbfd;color:#728294;font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+tr:last-child td{border-bottom:0}tr:hover td{background:#fcfdff}
+.row-actions{white-space:nowrap}.row-actions select{width:auto!important;padding:6px 7px!important;font-size:10px!important}.row-actions button{padding:6px 9px!important;font-size:10px!important}
+.vit-footer{margin-top:28px;background:#eef2f6;border-top:1px solid var(--line);color:#718091;padding:17px 24px;font-size:10px}
+.footer-inner{max-width:1180px;margin:auto}.vit-footer strong{color:var(--navy)}
+@media(max-width:700px){
+  .header-inner{padding:12px 15px}.role-pill{display:none}.nav-inner{padding:0 15px;gap:17px}
+  .shell{padding:24px 14px}.page-head h1{font-size:24px}.stats{grid-template-columns:repeat(2,1fr)}
+  .ticket-grid{grid-template-columns:1fr}
+}
+</style>
+</style>
+</head>
+<body>
+<header class="vit-header"><div class="header-inner"><div class="brand"><div class="vit-badge">VIT</div><div><div class="brand-title">Vellore Institute of Technology</div><div class="brand-sub">Vellore Campus · Facilities & Maintenance</div></div></div><div class="role-pill">Staff Operations</div></div></header><nav class="navbar"><div class="nav-inner"><a href="/static/index.html">Student</a><a class="active" href="/static/staff.html">Staff</a><a href="/static/admin.html">Administration</a></div></nav>
+<div class='shell'>
+
+
+<div class="page-head"><div class="eyebrow">VIT Vellore • Maintenance Operations</div><h1>Department Work Queue</h1><p>Review assigned complaints, update progress, and close resolved requests.</p></div>
+<div class="card">
+  <h2 class="card-title">Assigned department</h2><p class="card-sub">Select a maintenance team to view its active work queue.</p>
+  <label for="deptSelect"><b>Department</b></label><br/>
+  <select id="deptSelect"></select>
+  <button id="loadBtn">Load Complaints</button>
+</div>
+
+<div class="card">
+  <table id="complaintsTable">
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Complaint</th>
+        <th>Category</th>
+        <th>Priority</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <p id="emptyMsg" style="display:none;"><small>No complaints for this department yet.</small></p>
+</div>
+
+<script>
+const API = "/api";
+const STATUSES = ["Submitted", "Assigned", "In Progress", "Resolved"];
+
+async function loadDepartments() {
+  const res = await fetch(`${API}/departments`);
+  const depts = await res.json();
+  const select = document.getElementById("deptSelect");
+  select.innerHTML = depts.map(d => `<option value="${d}">${d}</option>`).join("");
+}
+
+function statusOptionsHtml(current) {
+  return STATUSES.map(s => `<option value="${s}" ${s === current ? "selected" : ""}>${s}</option>`).join("");
+}
+
+async function loadComplaints() {
+  const dept = document.getElementById("deptSelect").value;
+  const res = await fetch(`${API}/departments/${encodeURIComponent(dept)}/complaints`);
+  const complaints = await res.json();
+  const tbody = document.getElementById("tableBody");
+  const emptyMsg = document.getElementById("emptyMsg");
+  tbody.innerHTML = "";
+
+  if (complaints.length === 0) {
+    emptyMsg.style.display = "block";
+    return;
+  }
+  emptyMsg.style.display = "none";
+
+  complaints.forEach(c => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${c.complaint_id}</td>
+      <td style="max-width:220px;">${c.complaint_text}</td>
+      <td>${c.category}</td>
+      <td class="priority-${c.priority}">${c.priority}</td>
+      <td>${c.location || "-"}</td>
+      <td><span class="status-badge">${c.status}</span></td>
+      <td class="row-actions">
+        <select data-id="${c.complaint_id}">${statusOptionsHtml(c.status)}</select>
+        <button data-id="${c.complaint_id}" class="saveBtn">Save</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll(".saveBtn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const id = btn.dataset.id;
+      const select = document.querySelector(`select[data-id="${id}"]`);
+      const newStatus = select.value;
+      btn.disabled = true;
+      btn.textContent = "Saving...";
+      try {
+        const res = await fetch(`${API}/complaints/${id}/status`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (!res.ok) throw new Error("Update failed");
+        await loadComplaints();
+      } catch (e) {
+        alert(e.message);
+        btn.disabled = false;
+        btn.textContent = "Save";
+      }
+    });
+  });
+}
+
+document.getElementById("loadBtn").addEventListener("click", loadComplaints);
+loadDepartments().then(loadComplaints);
+</script>
+
+</div><footer class="vit-footer"><div class="footer-inner"><strong>VIT Vellore Campus</strong> · Campus Maintenance Portal · Vellore – 632 014, Tamil Nadu, India</div></footer></body>
+</html>

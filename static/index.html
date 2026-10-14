@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Campus Maintenance — Submit a Complaint</title>
+<style>
+:root{
+  --ink:#12263a; --muted:#6b7c8f; --navy:#0b2742; --blue:#1769aa;
+  --gold:#e9aa2b; --bg:#f7f9fb; --card:#fff; --line:#e4eaf0;
+  --soft:#f1f6fa; --danger:#c62828; --warn:#b86b00; --success:#16865a;
+}
+*{box-sizing:border-box}
+html,body{margin:0!important;padding:0!important;max-width:none!important}
+body{
+  background:var(--bg)!important;color:var(--ink);
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.5;
+}
+.vit-header{background:var(--navy);color:#fff}
+.header-inner{
+  max-width:1180px;margin:auto;padding:14px 24px;
+  min-height:62px;display:flex;align-items:center;justify-content:space-between
+}
+.brand{display:flex;align-items:center;gap:12px}
+.vit-badge{
+  width:43px;height:43px;border-radius:9px;background:#fff;color:var(--navy);
+  display:grid;place-items:center;font-size:16px;font-weight:950;letter-spacing:1px
+}
+.brand-title{font-size:15px;font-weight:800}
+.brand-sub{font-size:11px;color:#b9c9d8;margin-top:1px}
+.role-pill{font-size:11px;color:#dbe6ef}
+.navbar{background:#fff;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:auto;padding:0 24px;display:flex;gap:22px}
+.navbar a{
+  color:#657587;text-decoration:none;font-size:12px;font-weight:750;
+  padding:11px 2px;border-bottom:2px solid transparent
+}
+.navbar a.active,.navbar a:hover{color:var(--blue);border-color:var(--gold)}
+.shell{max-width:1180px;margin:auto;padding:32px 24px}
+.page-head{margin-bottom:22px}
+.eyebrow{font-size:10px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase;color:var(--maroon)}
+.page-head h1{margin:4px 0;color:var(--navy);font-size:28px;letter-spacing:-.5px}
+.page-head p{margin:0;color:var(--muted);font-size:13px}
+.card{
+  background:var(--card)!important;border:1px solid var(--line)!important;
+  border-radius:11px!important;box-shadow:0 2px 10px rgba(18,38,58,.04)!important;
+  padding:22px!important;margin-bottom:18px
+}
+.card-title{font-size:17px!important;color:var(--navy);margin:0!important}
+.card-sub{font-size:12px!important;color:var(--muted);margin:4px 0 17px!important}
+label{font-size:11px!important;font-weight:800!important;color:#53677a!important;margin:13px 0 6px!important}
+input,textarea,select{
+  width:100%;border:1px solid #ccd7e1!important;border-radius:7px!important;
+  background:#fff!important;color:var(--ink)!important;padding:10px 11px!important;
+  font:inherit;font-size:13px!important
+}
+textarea{min-height:115px!important}
+input:focus,textarea:focus,select:focus{
+  outline:2px solid #1769aa20!important;border-color:var(--blue)!important
+}
+button{
+  border:0!important;border-radius:7px!important;background:var(--blue)!important;
+  color:#fff!important;padding:10px 16px!important;font-size:12px!important;
+  font-weight:800!important;box-shadow:none!important;transition:.15s
+}
+button:hover{background:#12598f!important;transform:none!important}
+.tip{
+  margin:14px 0;background:#f8fafc;border:1px solid var(--line);border-radius:7px;
+  padding:10px 11px;color:#68798a;font-size:11px
+}
+.tip b{color:var(--navy)}
+.ticket{
+  margin-top:18px!important;padding:17px!important;border-radius:9px!important;
+  border:1px solid #d9e5ef!important;border-left:3px solid var(--blue)!important;
+  background:var(--soft)!important
+}
+.ticket-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.ticket-item b{
+  display:block;font-size:9px;text-transform:uppercase;letter-spacing:.6px;
+  color:#8090a0;margin-bottom:2px
+}
+.ticket-item span{font-size:13px}
+.status-badge{border-radius:999px!important;font-size:10px!important;padding:4px 8px!important}
+.priority-Critical{color:var(--danger)!important;font-weight:900!important}
+.priority-High{color:var(--warn)!important;font-weight:850!important}
+.priority-Medium{color:#8a6500!important;font-weight:800!important}
+.priority-Low{color:var(--success)!important;font-weight:800!important}
+.timeline{display:flex;margin-top:17px}
+.step{flex:1;text-align:center;position:relative;color:#a0acb7;font-size:9px}
+.step:before{content:"";display:block;width:9px;height:9px;border-radius:50%;background:#d6dee6;margin:0 auto 5px;position:relative;z-index:2}
+.step:after{content:"";height:1px;background:#dbe2e8;position:absolute;top:4px;left:50%;right:-50%;z-index:1}
+.step:last-child:after{display:none}.step.done{color:var(--blue)}.step.done:before{background:var(--blue)}.step.done:after{background:var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 16px}
+.stat-label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#7b8b9a;font-weight:850}
+.stat-num{font-size:24px;color:var(--navy);font-weight:900;margin-top:2px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;min-width:900px;background:#fff}
+th,td{padding:11px 10px;text-align:left;border-bottom:1px solid #edf1f4;font-size:11px;vertical-align:top}
+th{background:#fafbfd;color:#728294;font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+tr:last-child td{border-bottom:0}tr:hover td{background:#fcfdff}
+.row-actions{white-space:nowrap}.row-actions select{width:auto!important;padding:6px 7px!important;font-size:10px!important}.row-actions button{padding:6px 9px!important;font-size:10px!important}
+.vit-footer{margin-top:28px;background:#eef2f6;border-top:1px solid var(--line);color:#718091;padding:17px 24px;font-size:10px}
+.footer-inner{max-width:1180px;margin:auto}.vit-footer strong{color:var(--navy)}
+@media(max-width:700px){
+  .header-inner{padding:12px 15px}.role-pill{display:none}.nav-inner{padding:0 15px;gap:17px}
+  .shell{padding:24px 14px}.page-head h1{font-size:24px}.stats{grid-template-columns:repeat(2,1fr)}
+  .ticket-grid{grid-template-columns:1fr}
+}
+</style>
+</style>
+</head>
+<body>
+<header class="vit-header"><div class="header-inner"><div class="brand"><div class="vit-badge">VIT</div><div><div class="brand-title">Vellore Institute of Technology</div><div class="brand-sub">Vellore Campus · Facilities & Maintenance</div></div></div><div class="role-pill">Student Portal</div></div></header><nav class="navbar"><div class="nav-inner"><a class="active" href="/static/index.html">Student</a><a href="/static/staff.html">Staff</a><a href="/static/admin.html">Administration</a></div></nav>
+<div class='shell'>
+
+
+<div class="page-head"><div class="eyebrow">VIT Vellore • Facilities & Maintenance</div><h1>Campus Maintenance Portal</h1><p>Report an issue, get it routed to the right team, and track its progress.</p></div>
+<div class="card">
+  <h2 class="card-title">Submit a complaint</h2><p class="card-sub">Tell us what needs attention. Include the block, floor, room or lab when possible.</p>
+  <label for="regNo">Registration Number</label>
+  <input id="regNo" type="text" placeholder="e.g. 21CS045" />
+
+  <label for="complaintText">WHAT NEEDS ATTENTION?</label>
+  <textarea id="complaintText" placeholder="Describe the issue, e.g. The projector in Lab 5 isn't working"></textarea>
+
+  <div class="tip"><b>Location tip:</b> Mention locations such as G05, Room 112, AB4 or a lab name so the maintenance team can reach the issue faster.</div>
+  <button id="submitBtn">Submit Complaint</button>
+  <div id="submitError" class="error"></div>
+  <div id="ticketResult"></div>
+</div>
+
+<div class="card">
+  <h2 class="card-title">Track my complaints</h2><p class="card-sub">Enter your registration number to view submitted tickets and current status.</p>
+  <label for="trackRegNo">Registration Number</label>
+  <input id="trackRegNo" type="text" placeholder="e.g. 21CS045" />
+  <button id="trackBtn">Look Up</button>
+  <div id="trackError" class="error"></div>
+  <div id="trackResults"></div>
+</div>
+
+<script>
+const API = "/api";
+
+function priorityClass(p) {
+  return "priority-" + p;
+}
+
+function renderTicket(container, t) {
+  container.innerHTML = `
+    <div class="ticket">
+      <div><b>Ticket ID:</b> ${t.complaint_id || t.ticket_id}</div>
+      <div><b>Category:</b> ${t.category}</div>
+      <div><b>Priority:</b> <span class="${priorityClass(t.priority || t.final_priority)}">${t.priority || t.final_priority}</span>
+        ${ (t.safety_rule_escalated || t.safety_rule_escalated === 1) ? " (escalated by safety rules)" : "" }</div>
+      <div><b>Department:</b> ${t.department || t.assigned_department}</div>
+      <div><b>Status:</b> <span class="status-badge">${t.status}</span></div>
+      <div><b>Created:</b> ${t.created_at}</div>
+      ${t.updated_at ? `<div><b>Last Updated:</b> ${t.updated_at}</div>` : ""}
+      ${t.resolved_at ? `<div><b>Resolved:</b> ${t.resolved_at}</div>` : ""}
+    </div>
+  `;
+}
+
+document.getElementById("submitBtn").addEventListener("click", async () => {
+  const regNo = document.getElementById("regNo").value.trim();
+  const text = document.getElementById("complaintText").value.trim();
+  const errorEl = document.getElementById("submitError");
+  const resultEl = document.getElementById("ticketResult");
+  errorEl.textContent = "";
+  resultEl.innerHTML = "";
+
+  if (!regNo || !text) {
+    errorEl.textContent = "Please enter both registration number and complaint text.";
+    return;
+  }
+
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  btn.textContent = "Submitting...";
+
+  try {
+    const res = await fetch(`${API}/complaints`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ registration_number: regNo, complaint_text: text })
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || "Submission failed");
+    }
+    const ticket = await res.json();
+    renderTicket(resultEl, {
+      complaint_id: ticket.ticket_id,
+      category: ticket.category,
+      priority: ticket.final_priority,
+      safety_rule_escalated: ticket.safety_rule_escalated,
+      department: ticket.assigned_department,
+      status: ticket.status,
+      created_at: ticket.created_at
+    });
+    document.getElementById("complaintText").value = "";
+  } catch (e) {
+    errorEl.textContent = e.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Submit Complaint";
+  }
+});
+
+document.getElementById("trackBtn").addEventListener("click", async () => {
+  const regNo = document.getElementById("trackRegNo").value.trim();
+  const errorEl = document.getElementById("trackError");
+  const resultsEl = document.getElementById("trackResults");
+  errorEl.textContent = "";
+  resultsEl.innerHTML = "";
+
+  if (!regNo) {
+    errorEl.textContent = "Enter a registration number.";
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/complaints/by-registration/${encodeURIComponent(regNo)}`);
+    const complaints = await res.json();
+    if (complaints.length === 0) {
+      resultsEl.innerHTML = "<p><small>No complaints found for this registration number.</small></p>";
+      return;
+    }
+    complaints.forEach(c => {
+      const div = document.createElement("div");
+      renderTicket(div, c);
+      resultsEl.appendChild(div);
+    });
+  } catch (e) {
+    errorEl.textContent = "Could not fetch complaints.";
+  }
+});
+</script>
+
+</div><footer class="vit-footer"><div class="footer-inner"><strong>VIT Vellore Campus</strong> · Campus Maintenance Portal · Vellore – 632 014, Tamil Nadu, India</div></footer></body>
+</html>

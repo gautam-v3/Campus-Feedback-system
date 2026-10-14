@@ -1,0 +1,49 @@
+{"label":"LOCATION","pattern":[{"TEXT":{"REGEX":"^[Gg](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"TEXT":{"REGEX":"^[1-9](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"LOWER":"lab"},{"TEXT":{"REGEX":"^[Gg](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"LOWER":"lab"},{"TEXT":{"REGEX":"^[1-9](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"LOWER":"room"},{"TEXT":{"REGEX":"^[Gg](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"LOWER":"room"},{"TEXT":{"REGEX":"^[1-9](0[1-9]|1[0-9]|2[0-4])$"}}]}
+{"label":"LOCATION","pattern":[{"LOWER":"lab"},{"IS_DIGIT":true}]}
+{"label":"LOCATION","pattern":[{"LOWER":"room"},{"IS_DIGIT":true}]}
+{"label":"LOCATION","pattern":[{"LOWER":"hostel"},{"IS_DIGIT":true,"OP":"?"}]}
+{"label":"EQUIPMENT","pattern":"projector"}
+{"label":"EQUIPMENT","pattern":"ac"}
+{"label":"EQUIPMENT","pattern":"air conditioner"}
+{"label":"EQUIPMENT","pattern":"fan"}
+{"label":"EQUIPMENT","pattern":"light"}
+{"label":"EQUIPMENT","pattern":"bulb"}
+{"label":"EQUIPMENT","pattern":"wifi"}
+{"label":"EQUIPMENT","pattern":"wi-fi"}
+{"label":"EQUIPMENT","pattern":"router"}
+{"label":"EQUIPMENT","pattern":"computer"}
+{"label":"EQUIPMENT","pattern":"printer"}
+{"label":"EQUIPMENT","pattern":"chair"}
+{"label":"EQUIPMENT","pattern":"desk"}
+{"label":"EQUIPMENT","pattern":"door"}
+{"label":"EQUIPMENT","pattern":"window"}
+{"label":"EQUIPMENT","pattern":"tap"}
+{"label":"EQUIPMENT","pattern":"pipe"}
+{"label":"EQUIPMENT","pattern":"switchboard"}
+{"label":"EQUIPMENT","pattern":"socket"}
+{"label":"BLOCK","pattern":"block a"}
+{"label":"BLOCK","pattern":"block b"}
+{"label":"BLOCK","pattern":"block c"}
+{"label":"BLOCK","pattern":"ab block"}
+{"label":"BLOCK","pattern":"cd block"}
+{"label":"BLOCK","pattern":"main block"}
+{"label":"BLOCK","pattern":"hostel block"}
+{"label":"BLOCK","pattern":"academic block"}
+{"label":"PROBLEM","pattern":"not working"}
+{"label":"PROBLEM","pattern":"broken"}
+{"label":"PROBLEM","pattern":"damaged"}
+{"label":"PROBLEM","pattern":"leaking"}
+{"label":"PROBLEM","pattern":"not cooling"}
+{"label":"PROBLEM","pattern":"slow"}
+{"label":"PROBLEM","pattern":"stopped working"}
+{"label":"PROBLEM","pattern":"not turning on"}
+{"label":"PROBLEM","pattern":"flickering"}
+{"label":"PROBLEM","pattern":"cracked"}
+{"label":"PROBLEM","pattern":"stuck"}
+{"label":"PROBLEM","pattern":"blocked"}
+{"label":"PROBLEM","pattern":"overflowing"}

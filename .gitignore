@@ -1,10 +1,11 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
-models/*.pkl
-models/campus_ner_model/
+
+# Ignore evaluation images, but keep trained models
 models/*.png
-data/complaints_processed.csv
+
 # Local database and complaint data
 data/*.db
 data/*.csv
